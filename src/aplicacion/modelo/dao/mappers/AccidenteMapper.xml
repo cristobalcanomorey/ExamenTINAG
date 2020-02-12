@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='aplicacion.modelo.dao.mappers.AccidenteMapper'>
+
+	<resultMap type='Jugador' id='JugadoresResult'>
+		<id property='id' column='id' />
+		<result property='nombre' column='nombre' />
+		<result property='foto' column='foto' />
+	</resultMap>
+
+<!-- 	<insert id='registrarValidacion' parameterType='map' useGeneratedKeys='true' keyProperty='id'> -->
+<!-- 		INSERT INTO altas_bajas (correo,nombre,tipoAccion,fecha) -->
+<!-- 		VALUES(#{correo},#{nombre},#{tipoAccion},#{fecha}) -->
+<!-- 	</insert> -->
+	
+	<select id='getJugadores' resultMap='JugadoresResult'>
+		SELECT * FROM Jugadores
+	</select>
+	
+<!-- 	<select id='getJugador' resultType="Jugador"> -->
+<!-- 		SELECT * FROM Jugadores WHERE id = #{idJugador} -->
+<!-- 	</select> -->
+	
+<!-- 	<delete id="borrar"> -->
+<!-- 		DELETE from Jugadores WHERE id = #{idJugador} -->
+<!-- 	</delete> -->
+	
+<!-- 	<insert id="insert" parameterType="Jugador"> -->
+<!-- 		INSERT INTO Jugadores (nombre,foto) VALUES (#{nombre},#{foto}) -->
+<!-- 	</insert> -->
+	
+<!-- 	<update id="update" parameterType="Jugador"> -->
+<!-- 		UPDATE Jugadores SET nombre = #{nombre}, foto = #{foto} WHERE id = #{id} -->
+<!-- 	</update> -->
+</mapper>
