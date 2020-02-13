@@ -1,8 +1,11 @@
 package aplicacion.modelo.pojo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class AccidentesPorSexoYVehiculoEnDistrito {
-	private String vehiculo;
 	private String sexo;
+	private String vehiculo;
 	private Integer cantidad;
 
 	public AccidentesPorSexoYVehiculoEnDistrito() {

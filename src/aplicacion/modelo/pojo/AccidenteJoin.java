@@ -2,6 +2,9 @@ package aplicacion.modelo.pojo;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class AccidenteJoin {
 	private Integer id;
 	private String expediente;

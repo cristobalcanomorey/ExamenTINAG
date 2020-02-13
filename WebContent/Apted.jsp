@@ -16,6 +16,7 @@
 		<ul>
 			<li><a href="Principal">This is not a Gameland</a></li>
 			<li><a href="Apted">Estadísticas A.P.T.E.D.</a></li>
+			<li><a href="Apsyved">Estadísticas A.P.S.Y.V.E.D</a></li>
 		</ul>
 	</div>
 	<h1>Estadísticas A.P.T.E.D.</h1>
@@ -24,7 +25,7 @@
 		fIni = (String)request.getAttribute("fIni");
 		fFin = (String)request.getAttribute("fFin");
 	%>
-	<form action="Estadisticas" method="POST">
+	<form action="Apted" method="POST">
 		<p>Desde:</p>
 		<input type="date" name="fIni" value="<%=fIni%>">
 		<p>Hasta:</p>

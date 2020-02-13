@@ -1,5 +1,8 @@
 package aplicacion.modelo.pojo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class TiposVehiculo {
 	private Integer id;
 	private String nombre;

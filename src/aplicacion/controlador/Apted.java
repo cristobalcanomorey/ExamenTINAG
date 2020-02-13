@@ -36,7 +36,7 @@ public class Apted extends HttpServlet {
 		try {
 			rs.forward(request, response);
 		} catch (Exception e) {
-			log.getLoggerEstadisticas().debug("Error en GET APTED: ", e);
+			log.getLoggerApted().debug("Error en GET APTED: ", e);
 		}
 	}
 
@@ -45,6 +45,7 @@ public class Apted extends HttpServlet {
 			throws ServletException, IOException {
 		LogSingleton log = LogSingleton.getInstance();
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Apted.jsp");
+		request.setCharacterEncoding("UTF-8");
 		String fIni = request.getParameter("fIni");
 		String fFin = request.getParameter("fFin");
 
@@ -59,7 +60,7 @@ public class Apted extends HttpServlet {
 		try {
 			rs.forward(request, response);
 		} catch (Exception e) {
-			log.getLoggerEstadisticas().debug("Error en POST APTED: ", e);
+			log.getLoggerApted().debug("Error en POST APTED: ", e);
 		}
 	}
 
