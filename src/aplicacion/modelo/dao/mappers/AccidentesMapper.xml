@@ -9,6 +9,12 @@
 		<result property='tipo' column='tipo' />
 		<result property='cantidad' column='cantidad' />
 	</resultMap>
+	
+	<resultMap type='AccidentesPorSexoYVehiculoEnDistrito' id='AccidentesPorSexoYVehiculoEnDistritoResult'>
+		<result property='vehiculo' column='vehiculo' />
+		<result property='sexo' column='sexo' />
+		<result property='cantidad' column='cantidad' />
+	</resultMap>
 
 <!-- 	<insert id='registrarValidacion' parameterType='map' useGeneratedKeys='true' keyProperty='id'> -->
 <!-- 		INSERT INTO altas_bajas (correo,nombre,tipoAccion,fecha) -->
@@ -31,6 +37,24 @@
     		ACCIDENTES.FECHA &lt;= #{fFin}
 		GROUP BY DISTRITOS.NOMBRE,TIPOS_ACCIDENTE.NOMBRE
 		ORDER BY DISTRITOS.NOMBRE
+	</select>
+	
+	<select id="getAccidentesPorSexoYVehiculoEnDistrito" resultMap="AccidentesPorSexoYVehiculoEnDistritoResult">
+		SELECT
+			TIPOS_VEHICULO.NOMBRE as vehiculo,
+    		TIPOS_SEXO.NOMBRE as sexo,
+    		COUNT(TIPOS_SEXO.NOMBRE) as cantidad
+		FROM
+			DISTRITOS,ACCIDENTES,TIPOS_SEXO,TIPOS_VEHICULO
+		WHERE
+			ACCIDENTES.ID_SEXO = TIPOS_SEXO.ID AND
+    		ACCIDENTES.ID_TIPO_VEHICULO = TIPOS_VEHICULO.ID AND
+    		ACCIDENTES.ID_DISTRITO = DISTRITOS.ID AND
+    		DISTRITOS.NOMBRE = 'ARGANZUELA' AND
+    		ACCIDENTES.FECHA >= '2019-01-01' AND
+    		ACCIDENTES.FECHA <= '2019-01-01'
+		GROUP BY DISTRITOS.NOMBRE,TIPOS_VEHICULO.NOMBRE,TIPOS_SEXO.NOMBRE
+		ORDER BY TIPOS_SEXO.NOMBRE, TIPOS_VEHICULO.NOMBRE;
 	</select>
 	
 <!-- 	<select id='getJugador' resultType="Jugador"> -->
