@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="aplicacion.modelo.pojo.AccidentesPorSexoYVehiculoEnDistrito"%>
 <%! ArrayList<AccidentesPorSexoYVehiculoEnDistrito> apsyveds; %>
+<%! ArrayList<String> distritos; %>
 <%! String fIni; %>
 <%! String fFin; %>
 <%! String distrito; %>
@@ -25,6 +26,7 @@
 	<%
 		fIni = (String)request.getAttribute("fIni");
 		fFin = (String)request.getAttribute("fFin");
+		distritos = (ArrayList<String>)request.getAttribute("distritos");
 		distrito = (String)request.getAttribute("distrito");
 		if(distrito == null){
 			distrito = "";
@@ -32,7 +34,15 @@
 	%>
 	<form action="Apsyved" method="POST">
 		<p>Distrito:</p>
-		<input type="text" name="distrito" value="<%=distrito%>">
+		<select>
+			<%
+				for(String distrito: distritos){
+					out.print("<option>");
+					out.print(distrito);
+					out.print("</option>");
+				}
+			%>
+		</select>
 		<p>Desde:</p>
 		<input type="date" name="fIni" value="<%=fIni%>">
 		<p>Hasta:</p>

@@ -24,9 +24,7 @@ public class AccidentesDAO {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		ArrayList<String> distritos = null;
 		try {
-			AccidentesMapper accidentesMapper = sqlSession.getMapper(AccidentesMapper.class);
-			// accidentesMapper.getDistritos();
-
+			distritos = (ArrayList<String>) sqlSession.selectList("getDistritos");
 		} finally {
 			sqlSession.close();
 		}

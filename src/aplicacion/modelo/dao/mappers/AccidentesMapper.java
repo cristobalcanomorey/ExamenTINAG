@@ -15,6 +15,4 @@ public interface AccidentesMapper {
 	public ArrayList<AccidentesPorSexoYVehiculoEnDistrito> getAccidentesPorSexoYVehiculoEnDistrito(
 			@Param("fIni") String fIni, @Param("fFin") String fFin, @Param("distrito") String distrito);
 
-	public String getDistritos();
-
 }
