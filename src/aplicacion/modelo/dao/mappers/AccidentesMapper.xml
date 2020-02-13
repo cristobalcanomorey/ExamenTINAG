@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 
-<mapper namespace='aplicacion.modelo.dao.mappers.AccidenteMapper'>
+<mapper namespace='aplicacion.modelo.dao.mappers.AccidentesMapper'>
 
-	<resultMap type='Jugador' id='JugadoresResult'>
-		<id property='id' column='id' />
-		<result property='nombre' column='nombre' />
-		<result property='foto' column='foto' />
+	<resultMap type='AccidentesPorTipoEnDistrito' id='AccidentesPorTipoEnDistritoResult'>
+		<result property='distrito' column='distrito' />
+		<result property='tipo' column='tipo' />
+		<result property='cantidad' column='cantidad' />
 	</resultMap>
 
 <!-- 	<insert id='registrarValidacion' parameterType='map' useGeneratedKeys='true' keyProperty='id'> -->
@@ -15,8 +15,20 @@
 <!-- 		VALUES(#{correo},#{nombre},#{tipoAccion},#{fecha}) -->
 <!-- 	</insert> -->
 	
-	<select id='getJugadores' resultMap='JugadoresResult'>
-		SELECT * FROM Jugadores
+	
+	
+	<select id='getAccidentesPorTipoEnDistrito' resultMap='AccidentesPorTipoEnDistritoResult'>
+		SELECT
+			DISTRITOS.NOMBRE as distrito,
+    		TIPOS_ACCIDENTE.NOMBRE as tipo,
+    		COUNT(TIPOS_ACCIDENTE.NOMBRE) as cantidad
+		FROM
+			ACCIDENTES,DISTRITOS,TIPOS_ACCIDENTE
+		WHERE
+			ACCIDENTES.ID_DISTRITO = DISTRITOS.ID AND 
+			ACCIDENTES.ID_TIPO_ACCIDENTE = TIPOS_ACCIDENTE.ID AND
+    		CONCAT(ACCIDENTES.FECHA," ",ACCIDENTES.HORA) >= #{fIni} and CONCAT(ACCIDENTES.FECHA," ",ACCIDENTES.HORA) &lt;= #{fFin}
+		GROUP BY DISTRITOS.NOMBRE,TIPOS_ACCIDENTE.NOMBRE
 	</select>
 	
 <!-- 	<select id='getJugador' resultType="Jugador"> -->
