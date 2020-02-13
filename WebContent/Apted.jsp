@@ -13,9 +13,13 @@
 </head>
 <body>
 	<div id="cabecera">
-		<h1>This is not a Gameland</h1>
+		<ul>
+			<li><a href="Principal">This is not a Gameland</a></li>
+			<li><a href="Apted">Estadísticas A.P.T.E.D.</a></li>
+		</ul>
 	</div>
-	<h3>Obtener estadísticas del número de accidentes de cada tipo por distrito en el rango de dos fechas</h3>
+	<h1>Estadísticas A.P.T.E.D.</h1>
+	<h3>Obtener las estadísticas del número de accidentes de cada tipo por distrito en el rango de dos fechas</h3>
 	<%
 		fIni = (String)request.getAttribute("fIni");
 		fFin = (String)request.getAttribute("fFin");

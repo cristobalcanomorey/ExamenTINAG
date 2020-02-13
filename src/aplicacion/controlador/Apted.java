@@ -13,8 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJB;
 
-@WebServlet("/Estadisticas")
-public class Estadisticas extends HttpServlet {
+/***
+ * Muestra los registros del número de Accidentes Por Tipo En cada Distrito o
+ * A.P.T.E.D.
+ * 
+ * @author tofol
+ *
+ */
+@WebServlet("/Apted")
+public class Apted extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
@@ -24,12 +31,12 @@ public class Estadisticas extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		LogSingleton log = LogSingleton.getInstance();
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Estadisticas.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Apted.jsp");
 
 		try {
 			rs.forward(request, response);
 		} catch (Exception e) {
-			log.getLoggerEstadisticas().debug("Error en GET Estadisticas: ", e);
+			log.getLoggerEstadisticas().debug("Error en GET APTED: ", e);
 		}
 	}
 
@@ -37,12 +44,12 @@ public class Estadisticas extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		LogSingleton log = LogSingleton.getInstance();
-		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Estadisticas.jsp");
+		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Apted.jsp");
 		String fIni = request.getParameter("fIni");
 		String fFin = request.getParameter("fFin");
 
 		if (fIni == null || fFin == null) {
-			response.sendRedirect(request.getContextPath() + "/Estadisticas");
+			response.sendRedirect(request.getContextPath() + "/Apted");
 		} else {
 			request.setAttribute("APTEDS", accidentesEJB.getAccidentesPorTipoEnDistrito(fIni, fFin));
 			request.setAttribute("fIni", fIni);
@@ -52,7 +59,7 @@ public class Estadisticas extends HttpServlet {
 		try {
 			rs.forward(request, response);
 		} catch (Exception e) {
-			log.getLoggerEstadisticas().debug("Error en POST Estadisticas: ", e);
+			log.getLoggerEstadisticas().debug("Error en POST APTED: ", e);
 		}
 	}
 

@@ -3,13 +3,13 @@ package aplicacion.modelo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import aplicacion.controlador.Estadisticas;
+import aplicacion.controlador.Apted;
 import aplicacion.modelo.dao.MyBatisUtil;
 
 public class LogSingleton {
 	private static final LogSingleton INSTANCE = new LogSingleton();
 	private Logger loggerMyBatisUtil = LoggerFactory.getLogger(MyBatisUtil.class);
-	private Logger loggerEstadisticas = LoggerFactory.getLogger(Estadisticas.class);
+	private Logger loggerEstadisticas = LoggerFactory.getLogger(Apted.class);
 
 	private LogSingleton() {
 
