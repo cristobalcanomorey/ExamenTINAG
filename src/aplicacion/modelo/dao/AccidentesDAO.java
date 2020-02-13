@@ -26,6 +26,7 @@ public class AccidentesDAO {
 		try {
 			AccidentesMapper accidentesMapper = sqlSession.getMapper(AccidentesMapper.class);
 			// accidentesMapper.getDistritos();
+
 		} finally {
 			sqlSession.close();
 		}
