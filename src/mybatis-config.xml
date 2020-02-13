@@ -3,7 +3,7 @@
 <configuration>
 	<properties resource='jdbc.properties' />
 	<typeAliases>
-		<typeAlias type='aplicacion.modelo.pojo.AccidentesPorDistrito' alias='AccidentesPorDistrito'></typeAlias>
+		<typeAlias type='aplicacion.modelo.pojo.AccidentesPorTipoEnDistrito' alias='AccidentesPorTipoEnDistrito'></typeAlias>
 	</typeAliases>
 	<environments default='development'>
 		<environment id='development'>
