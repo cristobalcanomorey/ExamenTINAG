@@ -45,6 +45,8 @@ public class Estadisticas extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/Estadisticas");
 		} else {
 			request.setAttribute("APTEDS", accidentesEJB.getAccidentesPorTipoEnDistrito(fIni, fFin));
+			request.setAttribute("fIni", fIni);
+			request.setAttribute("fFin", fFin);
 		}
 
 		try {
