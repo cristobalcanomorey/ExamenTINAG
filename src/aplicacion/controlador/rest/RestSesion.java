@@ -46,4 +46,13 @@ public class RestSesion {
 		return sesionesEJB.agenteLogueado(session);
 	}
 
+	@GET
+	@Path("/Logout")
+	public void logout() {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+	}
+
 }
