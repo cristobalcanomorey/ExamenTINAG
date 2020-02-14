@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='aplicacion.modelo.dao.mappers.AgentesMapper'>
+		
+	<select id='getAgente' resultType="Agente">
+		SELECT * FROM AGENTE WHERE NUMERO_PLACA = #{placa} AND CLAVE = #{clave}
+	</select>
+
+</mapper>

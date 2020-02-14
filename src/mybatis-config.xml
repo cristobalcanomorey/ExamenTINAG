@@ -5,6 +5,7 @@
 	<typeAliases>
 		<typeAlias type='aplicacion.modelo.pojo.AccidentesPorTipoEnDistrito' alias='AccidentesPorTipoEnDistrito'></typeAlias>
 		<typeAlias type='aplicacion.modelo.pojo.AccidentesPorSexoYVehiculoEnDistrito' alias='AccidentesPorSexoYVehiculoEnDistrito'></typeAlias>
+		<typeAlias type='aplicacion.modelo.pojo.Agente' alias='Agente'></typeAlias>
 	</typeAliases>
 	<environments default='development'>
 		<environment id='development'>
@@ -19,5 +20,6 @@
 	</environments>
 	<mappers>
 		<mapper resource='aplicacion/modelo/dao/mappers/AccidentesMapper.xml' />
+		<mapper resource='aplicacion/modelo/dao/mappers/AgentesMapper.xml' />
 	</mappers>
 </configuration>
