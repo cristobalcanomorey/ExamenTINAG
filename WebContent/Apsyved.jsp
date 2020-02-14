@@ -34,11 +34,15 @@
 	%>
 	<form action="Apsyved" method="POST">
 		<p>Distrito:</p>
-		<select>
+		<select name="distrito">
 			<%
-				for(String distrito: distritos){
-					out.print("<option>");
-					out.print(distrito);
+				for(String dis: distritos){
+					if(dis.equals(distrito)){
+						out.print("<option selected='selected'>");
+					} else{
+						out.print("<option>");
+					}
+					out.print(dis);
 					out.print("</option>");
 				}
 			%>

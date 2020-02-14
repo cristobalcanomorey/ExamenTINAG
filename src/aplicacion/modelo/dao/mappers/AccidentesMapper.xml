@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="getDistritos" resultType="string">
-		SELECT NOMBRE FROM DISTRITO
+		SELECT NOMBRE FROM DISTRITOS
 	</select>
 	
 <!-- 	<select id='getJugador' resultType="Jugador"> -->
