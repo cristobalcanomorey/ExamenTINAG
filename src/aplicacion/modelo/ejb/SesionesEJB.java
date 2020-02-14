@@ -16,7 +16,7 @@ public class SesionesEJB {
 	 * @param session La sesión dónde buscamos al agente
 	 * @return El agente que hay en la sesión o null si no hay agente
 	 */
-	public Agente agenteLogeado(HttpSession session) {
+	public Agente agenteLogueado(HttpSession session) {
 		Agente agente = null;
 		if (session != null) {
 			agente = (Agente) session.getAttribute("agente");

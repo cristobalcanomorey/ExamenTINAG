@@ -3,12 +3,11 @@ package aplicacion.controlador.rest;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 
 import aplicacion.modelo.ejb.AgentesEJB;
 import aplicacion.modelo.ejb.SesionesEJB;
@@ -28,19 +27,23 @@ public class RestSesion {
 
 	@POST
 	@Path("/Login/{placa}/{clave}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Agente login(@PathParam("placa") String placa, @PathParam("clave") String clave) {
+	public void login(@PathParam("placa") String placa, @PathParam("clave") String clave) {
 		HttpSession session = request.getSession(false);
-		Agente agente = sesionesEJB.agenteLogeado(session);
+		Agente agente = sesionesEJB.agenteLogueado(session);
 		if (agente == null) {
 			agente = agentesEJB.loginAgente(placa, clave);
 			if (agente != null) {
 				session = request.getSession(true);
 				sesionesEJB.loginAgente(session, agente);
-				return agente;
 			}
 		}
-		return new Agente();
+	}
+
+	@GET
+	@Path("/Logueado")
+	public Agente logueado() {
+		HttpSession session = request.getSession(false);
+		return sesionesEJB.agenteLogueado(session);
 	}
 
 }
