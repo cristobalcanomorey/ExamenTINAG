@@ -6,6 +6,7 @@
 		<typeAlias type='aplicacion.modelo.pojo.AccidentesPorTipoEnDistrito' alias='AccidentesPorTipoEnDistrito'></typeAlias>
 		<typeAlias type='aplicacion.modelo.pojo.AccidentesPorSexoYVehiculoEnDistrito' alias='AccidentesPorSexoYVehiculoEnDistrito'></typeAlias>
 		<typeAlias type='aplicacion.modelo.pojo.Agente' alias='Agente'></typeAlias>
+		<typeAlias type='aplicacion.modelo.pojo.AccidenteConDistrito' alias='AccidenteConDistrito'></typeAlias>
 		<typeAlias type='aplicacion.modelo.pojo.Distrito' alias='Distrito'></typeAlias>
 		<typeAlias type='aplicacion.modelo.pojo.TiposAccidente' alias='TiposAccidente'></typeAlias>
 		<typeAlias type='aplicacion.modelo.pojo.TiposSexo' alias='TiposSexo'></typeAlias>

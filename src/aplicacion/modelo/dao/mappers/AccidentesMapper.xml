@@ -15,6 +15,14 @@
 		<result property='sexo' column='sexo' />
 		<result property='cantidad' column='cantidad' />
 	</resultMap>
+	
+	<resultMap type="AccidenteConDistrito" id="AccidentesConDistritosResult">
+		<id property="id" column="id"/>
+		<result property="fecha" column="fecha"/>
+		<result property="hora" column="hora"/>
+		<result property="expediente" column="expediente"/>
+		<result property="distrito" column="distrito"/>
+	</resultMap>
 
 <!-- 	<insert id='registrarValidacion' parameterType='map' useGeneratedKeys='true' keyProperty='id'> -->
 <!-- 		INSERT INTO altas_bajas (correo,nombre,tipoAccion,fecha) -->
@@ -55,6 +63,19 @@
     		ACCIDENTES.FECHA &lt;= #{fFin}
 		GROUP BY DISTRITOS.NOMBRE,TIPOS_VEHICULO.NOMBRE,TIPOS_SEXO.NOMBRE
 		ORDER BY TIPOS_SEXO.NOMBRE, TIPOS_VEHICULO.NOMBRE;
+	</select>
+	
+	<select id="getAccidentesConDistritos" resultMap="AccidentesConDistritosResult">
+		SELECT
+			ACCIDENTES.ID as id,
+			ACCIDENTES.FECHA as fecha,
+			ACCIDENTES.HORA as hora,
+			ACCIDENTES.EXPEDIENTE as expediente,
+			DISTRITOS.NOMBRE as distrito
+		FROM
+			ACCIDENTES,DISTRITOS
+		WHERE
+			ACCIDENTES.ID_DISTRITO = DISTRITOS.ID
 	</select>
 		
 <!-- 	<select id='getJugador' resultType="Jugador"> -->

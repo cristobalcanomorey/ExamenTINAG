@@ -4,6 +4,15 @@
 
 <mapper namespace='aplicacion.modelo.dao.mappers.AgentesMapper'>
 		
+	<resultMap type='Agente' id='AgentesResult'>
+		<id property='numeroPlaca' column='NUMERO_PLACA' />
+		<result property='rango' column='RANGO' />
+		<result property='clave' column='CLAVE' />
+		<result property='nombre' column='NOMBRE' />
+		<result property='apellidos' column='APELLIDOS' />
+		<result property='idDistrito' column='ID_DISTRITO' />
+	</resultMap>
+	
 	<select id='getAgente' resultType="Agente">
 		SELECT * FROM AGENTE WHERE NUMERO_PLACA = #{placa} AND CLAVE = #{clave}
 	</select>

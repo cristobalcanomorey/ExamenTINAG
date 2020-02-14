@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
 
+import aplicacion.modelo.dao.mappers.DistritosMapper;
+import aplicacion.modelo.pojo.Distrito;
+
 public class DistritosDAO {
 
 	public static ArrayList<String> getNombresDistritos() {
@@ -15,6 +18,16 @@ public class DistritosDAO {
 			sqlSession.close();
 		}
 		return distritos;
+	}
+
+	public static ArrayList<Distrito> getDistritos() {
+		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
+		try {
+			DistritosMapper distritosMapper = sqlSession.getMapper(DistritosMapper.class);
+			return distritosMapper.getDistritos();
+		} finally {
+			sqlSession.close();
+		}
 	}
 
 }

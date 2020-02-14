@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJB;
+import aplicacion.modelo.ejb.DistritosEJB;
 
 /***
  * Muestra los registros del número de Accidentes Por Sexo Y Vehiculo En cada
@@ -27,6 +28,9 @@ public class Apsyved extends HttpServlet {
 	@EJB
 	AccidentesEJB accidentesEJB;
 
+	@EJB
+	DistritosEJB distritosEJB;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -35,7 +39,7 @@ public class Apsyved extends HttpServlet {
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Apsyved.jsp");
 		request.setCharacterEncoding("UTF-8");
 
-		request.setAttribute("distritos", accidentesEJB.getNombresDistritos());
+		request.setAttribute("distritos", distritosEJB.getNombresDistritos());
 
 		try {
 			rs.forward(request, response);
@@ -55,7 +59,7 @@ public class Apsyved extends HttpServlet {
 		String fIni = request.getParameter("fIni");
 		String fFin = request.getParameter("fFin");
 		String distrito = request.getParameter("distrito");
-		request.setAttribute("distritos", accidentesEJB.getNombresDistritos());
+		request.setAttribute("distritos", distritosEJB.getNombresDistritos());
 
 		if (fIni == null || fFin == null || distrito == null) {
 			response.sendRedirect(request.getContextPath() + "/Apsyved");

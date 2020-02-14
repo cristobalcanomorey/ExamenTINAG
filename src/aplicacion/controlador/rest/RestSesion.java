@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 
 import aplicacion.modelo.ejb.AgentesEJB;
 import aplicacion.modelo.ejb.SesionesEJB;
@@ -42,7 +43,7 @@ public class RestSesion {
 
 	@GET
 	@Path("/Logueado")
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Agente logueado() {
 		HttpSession session = request.getSession(false);
 		return sesionesEJB.agenteLogueado(session);
