@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import aplicacion.modelo.dao.AccidentesDAO;
+import aplicacion.modelo.dao.DistritosDAO;
 import aplicacion.modelo.pojo.AccidentesPorSexoYVehiculoEnDistrito;
 import aplicacion.modelo.pojo.AccidentesPorTipoEnDistrito;
 
@@ -22,8 +23,8 @@ public class AccidentesEJB {
 		return AccidentesDAO.getAccidentesPorSexoYVehiculoEnDistrito(fIni, fFin, distrito);
 	}
 
-	public ArrayList<String> getDistritos() {
-		return AccidentesDAO.getDistritos();
+	public ArrayList<String> getNombresDistritos() {
+		return DistritosDAO.getNombresDistritos();
 	}
 
 }

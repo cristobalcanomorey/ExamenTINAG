@@ -35,7 +35,7 @@ public class Apsyved extends HttpServlet {
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Apsyved.jsp");
 		request.setCharacterEncoding("UTF-8");
 
-		request.setAttribute("distritos", accidentesEJB.getDistritos());
+		request.setAttribute("distritos", accidentesEJB.getNombresDistritos());
 
 		try {
 			rs.forward(request, response);
@@ -55,7 +55,7 @@ public class Apsyved extends HttpServlet {
 		String fIni = request.getParameter("fIni");
 		String fFin = request.getParameter("fFin");
 		String distrito = request.getParameter("distrito");
-		request.setAttribute("distritos", accidentesEJB.getDistritos());
+		request.setAttribute("distritos", accidentesEJB.getNombresDistritos());
 
 		if (fIni == null || fFin == null || distrito == null) {
 			response.sendRedirect(request.getContextPath() + "/Apsyved");

@@ -56,11 +56,7 @@
 		GROUP BY DISTRITOS.NOMBRE,TIPOS_VEHICULO.NOMBRE,TIPOS_SEXO.NOMBRE
 		ORDER BY TIPOS_SEXO.NOMBRE, TIPOS_VEHICULO.NOMBRE;
 	</select>
-	
-	<select id="getDistritos" resultType="string">
-		SELECT NOMBRE FROM DISTRITOS
-	</select>
-	
+		
 <!-- 	<select id='getJugador' resultType="Jugador"> -->
 <!-- 		SELECT * FROM Jugadores WHERE id = #{idJugador} -->
 <!-- 	</select> -->

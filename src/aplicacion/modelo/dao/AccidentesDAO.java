@@ -20,17 +20,6 @@ public class AccidentesDAO {
 		}
 	}
 
-	public static ArrayList<String> getDistritos() {
-		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
-		ArrayList<String> distritos = null;
-		try {
-			distritos = (ArrayList<String>) sqlSession.selectList("getDistritos");
-		} finally {
-			sqlSession.close();
-		}
-		return distritos;
-	}
-
 	public static ArrayList<AccidentesPorSexoYVehiculoEnDistrito> getAccidentesPorSexoYVehiculoEnDistrito(String fIni,
 			String fFin, String distrito) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
