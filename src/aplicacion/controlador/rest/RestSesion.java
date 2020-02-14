@@ -3,9 +3,9 @@ package aplicacion.controlador.rest;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -27,9 +27,9 @@ public class RestSesion {
 	private HttpServletRequest request;
 
 	@POST
-	@Path("/Login")
+	@Path("/Login/{placa}/{clave}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Agente login(@FormParam("placa") String placa, @FormParam("clave") String clave) {
+	public Agente login(@PathParam("placa") String placa, @PathParam("clave") String clave) {
 		HttpSession session = request.getSession(false);
 		Agente agente = sesionesEJB.agenteLogeado(session);
 		if (agente == null) {
@@ -40,7 +40,7 @@ public class RestSesion {
 				return agente;
 			}
 		}
-		return null;
+		return new Agente();
 	}
 
 }
