@@ -16,6 +16,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJB;
 import aplicacion.modelo.ejb.DistritosEJB;
 import aplicacion.modelo.ejb.SesionesEJB;
@@ -84,10 +85,16 @@ public class RestAccidentes {
 	@DELETE
 	@Path("/borraAccidente/{id}")
 	public void borraAccidente(@PathParam("id") String id) {
-		HttpSession session = request.getSession(false);
-		Agente agente = sesionesEJB.agenteLogueado(session);
-		if (agente != null) {
-			accidentesEJB.borrarAccidente(id);
+		LogSingleton log = LogSingleton.getInstance();
+		try {
+			Integer iden = Integer.valueOf(id);
+			HttpSession session = request.getSession(false);
+			Agente agente = sesionesEJB.agenteLogueado(session);
+			if (agente != null) {
+				accidentesEJB.borrarAccidente(iden.toString());
+			}
+		} catch (NumberFormatException e) {
+			log.getLoggerRestAccidentes().debug("Se ha producido un error en DELETE Accidente: ", e);
 		}
 	}
 

@@ -30,18 +30,11 @@
 		<result property="fecha" column="FECHA"/>
 		<result property="hora" column="HORA"/>
 		<result property="direccion" column="DIRECCION"/>
-		<result property="idDistrito" column="ID_DISTRITO"/>
-		<result property="idTipoAccidente" column="ID_TIPO_ACCIDENTE"/>
-		<result property="idTipoVehiculo" column="ID_TIPO_VEHICULO"/>
-		<result property="idSexo" column="ID_SEXO"/>
+		<result property="id_distrito" column="ID_DISTRITO"/>
+		<result property="id_tipo_accidente" column="ID_TIPO_ACCIDENTE"/>
+		<result property="id_tipo_vehiculo" column="ID_TIPO_VEHICULO"/>
+		<result property="id_sexo" column="ID_SEXO"/>
 	</resultMap>
-
-<!-- 	<insert id='registrarValidacion' parameterType='map' useGeneratedKeys='true' keyProperty='id'> -->
-<!-- 		INSERT INTO altas_bajas (correo,nombre,tipoAccion,fecha) -->
-<!-- 		VALUES(#{correo},#{nombre},#{tipoAccion},#{fecha}) -->
-<!-- 	</insert> -->
-	
-	
 	
 	<select id='getAccidentesPorTipoEnDistrito' resultMap='AccidentesPorTipoEnDistritoResult'>
 		SELECT
@@ -102,10 +95,10 @@
 			FECHA = #{fecha},
 			HORA = #{hora},
 			DIRECCION = #{direccion},
-			ID_DISTRITO = #{idDistrito},
-			ID_TIPO_ACCIDENTE = #{tipoAccidente},
-			ID_TIPO_VEHICULO = #{tipoVehiculo},
-			ID_SEXO = #{sexo}
+			ID_DISTRITO = #{id_distrito},
+			ID_TIPO_ACCIDENTE = #{id_tipo_accidente},
+			ID_TIPO_VEHICULO = #{id_tipo_vehiculo},
+			ID_SEXO = #{id_sexo}
 		WHERE
 			ID = #{id}
 	</update>
@@ -118,14 +111,7 @@
 		INSERT INTO ACCIDENTES
 			(EXPEDIENTE,FECHA,HORA,DIRECCION,ID_DISTRITO,ID_TIPO_ACCIDENTE,ID_TIPO_VEHICULO,ID_SEXO) 
 		VALUES
-			(#{expediente},#{fecha},#{hora},#{direccion},#{idDistrito},#{idTipoAccidente},#{idTipoVehiculo},#{idSexo})
+			(#{expediente},#{fecha},#{hora},#{direccion},#{id_distrito},#{id_tipo_accidente},#{id_tipo_vehiculo},#{id_sexo})
 	</insert>
-		
-<!-- 	<select id='getJugador' resultType="Jugador"> -->
-<!-- 		SELECT * FROM Jugadores WHERE id = #{idJugador} -->
-<!-- 	</select> -->
-		
-<!-- 	<update id="update" parameterType="Jugador"> -->
-<!-- 		UPDATE Jugadores SET nombre = #{nombre}, foto = #{foto} WHERE id = #{id} -->
-<!-- 	</update> -->
+	
 </mapper>

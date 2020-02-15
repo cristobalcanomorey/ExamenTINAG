@@ -11,10 +11,10 @@ public class Accidente {
 	private Date fecha;
 	private Date hora;
 	private String direccion;
-	private Integer idDistrito;
-	private Integer idTipoAccidente;
-	private Integer idTipoVehiculo;
-	private Integer idSexo;
+	private Integer id_distrito;
+	private Integer id_tipo_accidente;
+	private Integer id_tipo_vehiculo;
+	private Integer id_sexo;
 
 	public Accidente() {
 
@@ -61,35 +61,35 @@ public class Accidente {
 	}
 
 	public Integer getIdDistrito() {
-		return idDistrito;
+		return id_distrito;
 	}
 
 	public void setIdDistrito(Integer idDistrito) {
-		this.idDistrito = idDistrito;
+		this.id_distrito = idDistrito;
 	}
 
 	public Integer getIdTipoAccidente() {
-		return idTipoAccidente;
+		return id_tipo_accidente;
 	}
 
 	public void setIdTipoAccidente(Integer idTipoAccidente) {
-		this.idTipoAccidente = idTipoAccidente;
+		this.id_tipo_accidente = idTipoAccidente;
 	}
 
 	public Integer getIdTipoVehiculo() {
-		return idTipoVehiculo;
+		return id_tipo_vehiculo;
 	}
 
 	public void setIdTipoVehiculo(Integer idTipoVehiculo) {
-		this.idTipoVehiculo = idTipoVehiculo;
+		this.id_tipo_vehiculo = idTipoVehiculo;
 	}
 
 	public Integer getIdSexo() {
-		return idSexo;
+		return id_sexo;
 	}
 
 	public void setIdSexo(Integer idSexo) {
-		this.idSexo = idSexo;
+		this.id_sexo = idSexo;
 	}
 
 }

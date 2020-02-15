@@ -5,23 +5,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Agente {
 
-	private String numeroPlaca;
+	private String numero_placa;
 	private String rango;
 	private String clave;
 	private String nombre;
 	private String apellidos;
-	private Integer idDistrito;
+	private Integer id_distrito;
 
 	public Agente() {
 
 	}
 
 	public String getNumeroPlaca() {
-		return numeroPlaca;
+		return numero_placa;
 	}
 
 	public void setNumeroPlaca(String numeroPlaca) {
-		this.numeroPlaca = numeroPlaca;
+		this.numero_placa = numeroPlaca;
 	}
 
 	public String getRango() {
@@ -57,11 +57,11 @@ public class Agente {
 	}
 
 	public Integer getIdDistrito() {
-		return idDistrito;
+		return id_distrito;
 	}
 
 	public void setIdDistrito(Integer idDistrito) {
-		this.idDistrito = idDistrito;
+		this.id_distrito = idDistrito;
 	}
 
 }

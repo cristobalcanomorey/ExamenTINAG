@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import aplicacion.controlador.Apsyved;
 import aplicacion.controlador.Apted;
 import aplicacion.controlador.Principal;
+import aplicacion.controlador.rest.RestAccidentes;
 import aplicacion.modelo.dao.MyBatisUtil;
 
 public class LogSingleton {
@@ -14,6 +15,7 @@ public class LogSingleton {
 	private Logger loggerApted = LoggerFactory.getLogger(Apted.class);
 	private Logger loggerApsyved = LoggerFactory.getLogger(Apsyved.class);
 	private Logger loggerPrincipal = LoggerFactory.getLogger(Principal.class);
+	private Logger loggerRestAccidentes = LoggerFactory.getLogger(RestAccidentes.class);
 
 	private LogSingleton() {
 
@@ -37,6 +39,10 @@ public class LogSingleton {
 
 	public Logger getLoggerPrincipal() {
 		return loggerPrincipal;
+	}
+
+	public Logger getLoggerRestAccidentes() {
+		return loggerRestAccidentes;
 	}
 
 }
