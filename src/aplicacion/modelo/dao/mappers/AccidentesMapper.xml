@@ -24,6 +24,18 @@
 		<result property="distrito" column="distrito"/>
 	</resultMap>
 
+	<resultMap type="Accidente" id="AccidentesResult">
+		<id property="id" column="ID"/>
+		<result property="expediente" column="EXPEDIENTE"/>
+		<result property="fecha" column="FECHA"/>
+		<result property="hora" column="HORA"/>
+		<result property="direccion" column="DIRECCION"/>
+		<result property="idDistrito" column="ID_DISTRITO"/>
+		<result property="idTipoAccidente" column="ID_TIPO_ACCIDENTE"/>
+		<result property="idTipoVehiculo" column="ID_TIPO_VEHICULO"/>
+		<result property="idSexo" column="ID_SEXO"/>
+	</resultMap>
+
 <!-- 	<insert id='registrarValidacion' parameterType='map' useGeneratedKeys='true' keyProperty='id'> -->
 <!-- 		INSERT INTO altas_bajas (correo,nombre,tipoAccion,fecha) -->
 <!-- 		VALUES(#{correo},#{nombre},#{tipoAccion},#{fecha}) -->
@@ -77,19 +89,42 @@
 		WHERE
 			ACCIDENTES.ID_DISTRITO = DISTRITOS.ID
 	</select>
+	
+	<select id="getAccidente" resultType="Accidente">
+		SELECT * FROM ACCIDENTES WHERE ID = #{id}
+	</select>
+	
+	<update id="updateAccidente" parameterType="Accidente">
+		UPDATE
+			ACCIDENTES
+		SET
+			EXPEDIENTE = #{expediente},
+			FECHA = #{fecha},
+			HORA = #{hora},
+			DIRECCION = #{direccion},
+			ID_DISTRITO = #{idDistrito},
+			ID_TIPO_ACCIDENTE = #{tipoAccidente},
+			ID_TIPO_VEHICULO = #{tipoVehiculo},
+			ID_SEXO = #{sexo}
+		WHERE
+			ID = #{id}
+	</update>
+	
+	<delete id="borrarAccidente">
+		DELETE FROM ACCIDENTES WHERE ID = #{id}
+	</delete>
+	
+	<insert id="insertAccidente" useGeneratedKeys="true" keyProperty="ID" parameterType="Accidente">
+		INSERT INTO ACCIDENTES
+			(EXPEDIENTE,FECHA,HORA,DIRECCION,ID_DISTRITO,ID_TIPO_ACCIDENTE,ID_TIPO_VEHICULO,ID_SEXO) 
+		VALUES
+			(#{expediente},#{fecha},#{hora},#{direccion},#{idDistrito},#{idTipoAccidente},#{idTipoVehiculo},#{idSexo})
+	</insert>
 		
 <!-- 	<select id='getJugador' resultType="Jugador"> -->
 <!-- 		SELECT * FROM Jugadores WHERE id = #{idJugador} -->
 <!-- 	</select> -->
-	
-<!-- 	<delete id="borrar"> -->
-<!-- 		DELETE from Jugadores WHERE id = #{idJugador} -->
-<!-- 	</delete> -->
-	
-<!-- 	<insert id="insert" parameterType="Jugador"> -->
-<!-- 		INSERT INTO Jugadores (nombre,foto) VALUES (#{nombre},#{foto}) -->
-<!-- 	</insert> -->
-	
+		
 <!-- 	<update id="update" parameterType="Jugador"> -->
 <!-- 		UPDATE Jugadores SET nombre = #{nombre}, foto = #{foto} WHERE id = #{id} -->
 <!-- 	</update> -->

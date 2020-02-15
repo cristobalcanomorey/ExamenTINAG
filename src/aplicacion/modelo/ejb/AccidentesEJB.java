@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import aplicacion.modelo.dao.AccidentesDAO;
+import aplicacion.modelo.pojo.Accidente;
 import aplicacion.modelo.pojo.AccidenteConDistrito;
 import aplicacion.modelo.pojo.AccidentesPorSexoYVehiculoEnDistrito;
 import aplicacion.modelo.pojo.AccidentesPorTipoEnDistrito;
@@ -27,4 +28,20 @@ public class AccidentesEJB {
 		return AccidentesDAO.getAccidentesConDistritos();
 	}
 
+	public Accidente getAccidente(String id) {
+		return AccidentesDAO.getAccidente(id);
+	}
+
+	public Accidente updateAccidente(Accidente accidente) {
+		AccidentesDAO.updateAccidente(accidente);
+		return AccidentesDAO.getAccidente(accidente.getId().toString());
+	}
+
+	public void borrarAccidente(String id) {
+		AccidentesDAO.borrarAccidente(id);
+	}
+
+	public void insertAccidente(Accidente accidente) {
+		AccidentesDAO.insertAccidente(accidente);
+	}
 }

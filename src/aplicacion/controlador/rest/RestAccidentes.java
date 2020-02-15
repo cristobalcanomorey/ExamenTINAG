@@ -5,9 +5,14 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -17,6 +22,7 @@ import aplicacion.modelo.ejb.SesionesEJB;
 import aplicacion.modelo.ejb.TiposAccidentesEJB;
 import aplicacion.modelo.ejb.TiposSexosEJB;
 import aplicacion.modelo.ejb.TiposVehiculosEJB;
+import aplicacion.modelo.pojo.Accidente;
 import aplicacion.modelo.pojo.AccidenteConDistrito;
 import aplicacion.modelo.pojo.Agente;
 import aplicacion.modelo.pojo.Distrito;
@@ -47,6 +53,54 @@ public class RestAccidentes {
 
 	@Context
 	private HttpServletRequest request;
+
+	@GET
+	@Path("/getAccidente")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Accidente getAccidente(@QueryParam("id") String id) {
+		HttpSession session = request.getSession(false);
+		Agente agente = sesionesEJB.agenteLogueado(session);
+		if (agente != null) {
+			return accidentesEJB.getAccidente(id);
+		} else {
+			return null;
+		}
+	}
+
+	@PUT
+	@Path("/updateAccidente")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Accidente updateAccidente(Accidente accidente) {
+		HttpSession session = request.getSession(false);
+		Agente agente = sesionesEJB.agenteLogueado(session);
+		if (agente != null) {
+			return accidentesEJB.updateAccidente(accidente);
+		} else {
+			return null;
+		}
+	}
+
+	@DELETE
+	@Path("/borraAccidente/{id}")
+	public void borraAccidente(@PathParam("id") String id) {
+		HttpSession session = request.getSession(false);
+		Agente agente = sesionesEJB.agenteLogueado(session);
+		if (agente != null) {
+			accidentesEJB.borrarAccidente(id);
+		}
+	}
+
+	@PUT
+	@Path("/insertAccidente")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void insertAccidente(Accidente accidente) {
+		HttpSession session = request.getSession(false);
+		Agente agente = sesionesEJB.agenteLogueado(session);
+		if (agente != null) {
+			accidentesEJB.insertAccidente(accidente);
+		}
+	}
 
 	@GET
 	@Path("/getAccidentesConDistritos")
