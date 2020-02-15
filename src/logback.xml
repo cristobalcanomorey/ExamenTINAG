@@ -15,13 +15,13 @@
       </encoder>
    </appender>
       
-   <logger name="aplicacion.controlador.Estadisticas" level="DEBUG" additivity="false">
-    <appender-ref ref="ERRORFILE" />
-  </logger>
+<!--    <logger name="aplicacion.controlador.Estadisticas" level="DEBUG" additivity="false"> -->
+<!--     <appender-ref ref="ERRORFILE" /> -->
+<!--   </logger> -->
   
-  <logger name="aplicacion.modelo.dao.MyBatisUtil" level="DEBUG" additivity="false">
-    <appender-ref ref="ERRORFILE" />
-  </logger>
+<!--   <logger name="aplicacion.modelo.dao.MyBatisUtil" level="DEBUG" additivity="false"> -->
+<!--     <appender-ref ref="ERRORFILE" /> -->
+<!--   </logger> -->
  
   <root level="DEBUG">
     <appender-ref ref="ERRORFILE" />
