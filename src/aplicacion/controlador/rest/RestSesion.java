@@ -30,15 +30,12 @@ public class RestSesion {
 	@POST
 	@Path("/Login/{placa}/{clave}")
 	public void login(@PathParam("placa") String placa, @PathParam("clave") String clave) {
-		HttpSession session = request.getSession(false);
-		Agente agente = sesionesEJB.agenteLogueado(session);
-		if (agente == null) {
-			agente = agentesEJB.loginAgente(placa, clave);
-			if (agente != null) {
-				HttpSession session2 = request.getSession(true);
-				sesionesEJB.loginAgente(session2, agente);
-			}
+		Agente agente = agentesEJB.loginAgente(placa, clave);
+		if (agente != null) {
+			HttpSession session = request.getSession(true);
+			sesionesEJB.loginAgente(session, agente);
 		}
+
 	}
 
 	@GET
