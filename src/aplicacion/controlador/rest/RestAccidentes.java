@@ -59,11 +59,18 @@ public class RestAccidentes {
 	@Path("/getAccidente")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Accidente getAccidente(@QueryParam("id") String id) {
-		HttpSession session = request.getSession(false);
-		Agente agente = sesionesEJB.agenteLogueado(session);
-		if (agente != null) {
-			return accidentesEJB.getAccidente(id);
-		} else {
+		LogSingleton log = LogSingleton.getInstance();
+		try {
+			Integer iden = Integer.valueOf(id);
+			HttpSession session = request.getSession(false);
+			Agente agente = sesionesEJB.agenteLogueado(session);
+			if (agente != null) {
+				return accidentesEJB.getAccidente(iden.toString());
+			} else {
+				return null;
+			}
+		} catch (NumberFormatException e) {
+			log.getLoggerRestAccidentes().debug("Se ha producido un error en GET Accidente: ", e);
 			return null;
 		}
 	}
