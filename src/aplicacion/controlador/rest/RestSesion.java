@@ -35,8 +35,8 @@ public class RestSesion {
 		if (agente == null) {
 			agente = agentesEJB.loginAgente(placa, clave);
 			if (agente != null) {
-				session = request.getSession(true);
-				sesionesEJB.loginAgente(session, agente);
+				HttpSession session2 = request.getSession(true);
+				sesionesEJB.loginAgente(session2, agente);
 			}
 		}
 	}
@@ -46,7 +46,8 @@ public class RestSesion {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Agente logueado() {
 		HttpSession session = request.getSession(false);
-		return sesionesEJB.agenteLogueado(session);
+		Agente agente = sesionesEJB.agenteLogueado(session);
+		return agente;
 	}
 
 	@GET
