@@ -24,8 +24,8 @@ public class AccidentesEJB {
 		return AccidentesDAO.getAccidentesPorSexoYVehiculoEnDistrito(fIni, fFin, distrito);
 	}
 
-	public ArrayList<AccidenteConDistrito> getAccidentesConDistritos() {
-		return AccidentesDAO.getAccidentesConDistritos();
+	public ArrayList<AccidenteConDistrito> getAccidentesConDistritos(String idDistrito) {
+		return AccidentesDAO.getAccidentesConDistritos(idDistrito);
 	}
 
 	public Accidente getAccidente(String id) {

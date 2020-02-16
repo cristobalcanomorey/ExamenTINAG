@@ -33,11 +33,11 @@ public class AccidentesDAO {
 		}
 	}
 
-	public static ArrayList<AccidenteConDistrito> getAccidentesConDistritos() {
+	public static ArrayList<AccidenteConDistrito> getAccidentesConDistritos(String idDistrito) {
 		SqlSession sqlSession = MyBatisUtil.getSqlSessionFactory().openSession();
 		try {
 			AccidentesMapper accidentesMapper = sqlSession.getMapper(AccidentesMapper.class);
-			return accidentesMapper.getAccidentesConDistritos();
+			return accidentesMapper.getAccidentesConDistritos(idDistrito);
 		} finally {
 			sqlSession.close();
 		}

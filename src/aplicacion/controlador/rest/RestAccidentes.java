@@ -121,15 +121,15 @@ public class RestAccidentes {
 	@GET
 	@Path("/getAccidentesConDistritos")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<AccidenteConDistrito> getAccidentesConDistritos() {
+	public ArrayList<AccidenteConDistrito> getAccidentesConDistritos(@QueryParam("idDistrito") String idDistrito) {
 //		HttpSession session = request.getSession(false);
 //		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null) {
-//			return accidentesEJB.getAccidentesConDistritos();
+//		if (agente != null && idDistrito != null) {
+//			return accidentesEJB.getAccidentesConDistritos(idDistrito);
 //		} else {
 //			return null;
 //		}
-		return accidentesEJB.getAccidentesConDistritos();
+		return accidentesEJB.getAccidentesConDistritos(idDistrito);
 	}
 
 	@GET

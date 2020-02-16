@@ -80,7 +80,8 @@
 		FROM
 			ACCIDENTES,DISTRITOS
 		WHERE
-			ACCIDENTES.ID_DISTRITO = DISTRITOS.ID
+			ACCIDENTES.ID_DISTRITO = DISTRITOS.ID AND
+			DISTRITOS.ID = #{idDistrito}			
 	</select>
 	
 	<select id="getAccidente" resultType="Accidente">
