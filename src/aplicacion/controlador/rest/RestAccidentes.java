@@ -32,6 +32,8 @@ import aplicacion.modelo.pojo.TiposVehiculo;
 @Path("/Accidente")
 public class RestAccidentes {
 
+	private static final String TOKEN = "patata23";
+
 	@EJB
 	SesionesEJB sesionesEJB;
 
@@ -54,138 +56,110 @@ public class RestAccidentes {
 	private HttpServletRequest request;
 
 	@GET
-	@Path("/getAccidente")
+	@Path("/getAccidente/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Accidente getAccidente(@QueryParam("id") String id) {
+	public Accidente getAccidente(@PathParam("token") String token, @QueryParam("id") String id) {
 		LogSingleton log = LogSingleton.getInstance();
 		try {
 			Integer iden = Integer.valueOf(id);
-//			HttpSession session = request.getSession(false);
-//			Agente agente = sesionesEJB.agenteLogueado(session);
-//			if (agente != null) {
-//				return accidentesEJB.getAccidente(iden.toString());
-//			} else {
-//				return null;
-//			}
-			return accidentesEJB.getAccidente(iden.toString());
+			if (token.equals(TOKEN)) {
+				return accidentesEJB.getAccidente(iden.toString());
+			}
 		} catch (NumberFormatException e) {
 			log.getLoggerRestAccidentes().debug("Se ha producido un error en GET Accidente: ", e);
+		}
+		return null;
+	}
+
+	@PUT
+	@Path("/updateAccidente/{token}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Accidente updateAccidente(@PathParam("token") String token, Accidente accidente) {
+		if (token.equals(TOKEN)) {
+			return accidentesEJB.updateAccidente(accidente);
+		} else {
 			return null;
 		}
 	}
 
-	@PUT
-	@Path("/updateAccidente")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Accidente updateAccidente(Accidente accidente) {
-//		HttpSession session = request.getSession(false);
-//		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null) {
-//			return accidentesEJB.updateAccidente(accidente);
-//		} else {
-//			return null;
-//		}
-		return accidentesEJB.updateAccidente(accidente);
-	}
-
 	@DELETE
-	@Path("/borraAccidente/{id}")
-	public void borraAccidente(@PathParam("id") String id) {
+	@Path("/borraAccidente/{token}/{id}")
+	public void borraAccidente(@PathParam("token") String token, @PathParam("id") String id) {
 		LogSingleton log = LogSingleton.getInstance();
 		try {
 			Integer iden = Integer.valueOf(id);
-//			HttpSession session = request.getSession(false);
-//			Agente agente = sesionesEJB.agenteLogueado(session);
-//			if (agente != null) {
-//				accidentesEJB.borrarAccidente(iden.toString());
-//			}
-			accidentesEJB.borrarAccidente(iden.toString());
+			if (token.equals(TOKEN)) {
+				accidentesEJB.borrarAccidente(iden.toString());
+			}
 		} catch (NumberFormatException e) {
 			log.getLoggerRestAccidentes().debug("Se ha producido un error en DELETE Accidente: ", e);
 		}
 	}
 
 	@PUT
-	@Path("/insertAccidente")
+	@Path("/insertAccidente/{token}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void insertAccidente(Accidente accidente) {
-//		HttpSession session = request.getSession(false);
-//		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null) {
-//			accidentesEJB.insertAccidente(accidente);
-//		}
-		accidentesEJB.insertAccidente(accidente);
+	public void insertAccidente(@PathParam("token") String token, Accidente accidente) {
+		if (token.equals(TOKEN)) {
+			accidentesEJB.insertAccidente(accidente);
+		}
 	}
 
 	@GET
-	@Path("/getAccidentesConDistritos")
+	@Path("/getAccidentesConDistritos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<AccidenteConDistrito> getAccidentesConDistritos(@QueryParam("idDistrito") String idDistrito) {
-//		HttpSession session = request.getSession(false);
-//		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null && idDistrito != null) {
-//			return accidentesEJB.getAccidentesConDistritos(idDistrito);
-//		} else {
-//			return null;
-//		}
-		return accidentesEJB.getAccidentesConDistritos(idDistrito);
+	public ArrayList<AccidenteConDistrito> getAccidentesConDistritos(@PathParam("token") String token,
+			@QueryParam("idDistrito") String idDistrito) {
+		if (token.equals(TOKEN)) {
+			return accidentesEJB.getAccidentesConDistritos(idDistrito);
+		} else {
+			return null;
+		}
 	}
 
 	@GET
-	@Path("/getDistritos")
+	@Path("/getDistritos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Distrito> getDistritos() {
-//		HttpSession session = request.getSession(false);
-//		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null) {
-//			return distritosEJB.getDistritos();
-//		} else {
-//			return null;
-//		}
-		return distritosEJB.getDistritos();
+	public ArrayList<Distrito> getDistritos(@PathParam("token") String token) {
+		if (token.equals(TOKEN)) {
+			return distritosEJB.getDistritos();
+		} else {
+			return null;
+		}
 	}
 
 	@GET
-	@Path("/getTiposAccidentes")
+	@Path("/getTiposAccidentes/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<TiposAccidente> getTiposAccidentes() {
-//		HttpSession session = request.getSession(false);
-//		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null) {
-//			return tiposAccidentesEJB.getTiposAccidentes();
-//		} else {
-//			return null;
-//		}
-		return tiposAccidentesEJB.getTiposAccidentes();
+	public ArrayList<TiposAccidente> getTiposAccidentes(@PathParam("token") String token) {
+		if (token.equals(TOKEN)) {
+			return tiposAccidentesEJB.getTiposAccidentes();
+		} else {
+			return null;
+		}
 	}
 
 	@GET
-	@Path("/getTiposSexos")
+	@Path("/getTiposSexos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<TiposSexo> getTiposSexos() {
-//		HttpSession session = request.getSession(false);
-//		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null) {
-//			return tiposSexosEJB.getTiposSexos();
-//		} else {
-//			return null;
-//		}
-		return tiposSexosEJB.getTiposSexos();
+	public ArrayList<TiposSexo> getTiposSexos(@PathParam("token") String token) {
+		if (token.equals(TOKEN)) {
+			return tiposSexosEJB.getTiposSexos();
+		} else {
+			return null;
+		}
 	}
 
 	@GET
-	@Path("/getTiposVehiculos")
+	@Path("/getTiposVehiculos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<TiposVehiculo> getTiposVehiculos() {
-//		HttpSession session = request.getSession(false);
-//		Agente agente = sesionesEJB.agenteLogueado(session);
-//		if (agente != null) {
-//			return tiposVehiculosEJB.getTiposVehiculos();
-//		} else {
-//			return null;
-//		}
-		return tiposVehiculosEJB.getTiposVehiculos();
+	public ArrayList<TiposVehiculo> getTiposVehiculos(@PathParam("token") String token) {
+		if (token.equals(TOKEN)) {
+			return tiposVehiculosEJB.getTiposVehiculos();
+		} else {
+			return null;
+		}
 	}
 
 }
