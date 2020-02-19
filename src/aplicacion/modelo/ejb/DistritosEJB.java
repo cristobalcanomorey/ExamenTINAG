@@ -9,7 +9,7 @@ import aplicacion.modelo.dao.DistritosDAO;
 import aplicacion.modelo.pojo.Distrito;
 
 /***
- * Lógica de negocio para los agentes
+ * Lógica de negocio para los distritos
  * 
  * @author tofol
  *
