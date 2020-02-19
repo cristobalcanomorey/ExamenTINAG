@@ -27,6 +27,9 @@ public class Apted extends HttpServlet {
 	@EJB
 	AccidentesEJB accidentesEJB;
 
+	/***
+	 * Muestra la página de estadísticas "A.P.T.E.D."
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -40,6 +43,10 @@ public class Apted extends HttpServlet {
 		}
 	}
 
+	/***
+	 * Si obtiene todos los datos necesarios de los parametros pinta las
+	 * estadísticas "A.P.T.E.D."
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

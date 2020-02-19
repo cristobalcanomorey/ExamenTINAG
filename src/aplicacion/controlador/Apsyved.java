@@ -31,6 +31,9 @@ public class Apsyved extends HttpServlet {
 	@EJB
 	DistritosEJB distritosEJB;
 
+	/***
+	 * Muestra la página de estadísticas "A.P.S.Y.V.E.D."
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -49,6 +52,10 @@ public class Apsyved extends HttpServlet {
 
 	}
 
+	/***
+	 * Si obtiene todos los datos necesarios de los parametros pinta las
+	 * estadísticas "A.P.S.Y.V.E.D."
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -59,11 +66,11 @@ public class Apsyved extends HttpServlet {
 		String fIni = request.getParameter("fIni");
 		String fFin = request.getParameter("fFin");
 		String distrito = request.getParameter("distrito");
-		request.setAttribute("distritos", distritosEJB.getNombresDistritos());
 
 		if (fIni == null || fFin == null || distrito == null) {
 			response.sendRedirect(request.getContextPath() + "/Apsyved");
 		} else {
+			request.setAttribute("distritos", distritosEJB.getNombresDistritos());
 			request.setAttribute("APSYVEDS",
 					accidentesEJB.getAccidentesPorSexoYVehiculoEnDistrito(fIni, fFin, distrito));
 			request.setAttribute("fIni", fIni);

@@ -33,6 +33,7 @@
 		<button type="submit">Buscar</button>
 	</form>
 	<%
+	//Crea la tabla con los datos obtenidos o muestra un mensaje de error
 		apteds = (ArrayList<AccidentesPorTipoEnDistrito>) request.getAttribute("APTEDS");
 		if(apteds != null){
 			if(!apteds.isEmpty()){

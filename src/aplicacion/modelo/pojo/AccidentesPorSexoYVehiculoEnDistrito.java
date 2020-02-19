@@ -2,6 +2,13 @@ package aplicacion.modelo.pojo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Pojo con el sexo, vehiculo y cantidad de accidentes de ese sexo y con ese
+ * vehículo
+ * 
+ * @author tofol
+ *
+ */
 @XmlRootElement
 public class AccidentesPorSexoYVehiculoEnDistrito {
 	private String sexo;

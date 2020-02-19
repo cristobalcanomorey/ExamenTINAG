@@ -6,12 +6,25 @@ import javax.ejb.Stateless;
 import aplicacion.modelo.dao.AgentesDAO;
 import aplicacion.modelo.pojo.Agente;
 
+/***
+ * Lógica de negocio para los agentes
+ * 
+ * @author tofol
+ *
+ */
 @Stateless
 @LocalBean
 public class AgentesEJB {
 
-	public Agente loginAgente(String placa, String clave) {
-		return AgentesDAO.loginAgente(placa, clave);
+	/***
+	 * Obtiene el agente que coincide con esta placa y clave
+	 * 
+	 * @param placa Placa del agente
+	 * @param clave Contraseña del agente
+	 * @return Agente con esa placa y clave o null
+	 */
+	public Agente validarAgente(String placa, String clave) {
+		return AgentesDAO.validarAgente(placa, clave);
 	}
 
 }

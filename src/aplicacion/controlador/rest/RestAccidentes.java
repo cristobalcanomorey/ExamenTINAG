@@ -29,9 +29,18 @@ import aplicacion.modelo.pojo.TiposAccidente;
 import aplicacion.modelo.pojo.TiposSexo;
 import aplicacion.modelo.pojo.TiposVehiculo;
 
+/***
+ * Servicio rest para obtener y manipular datos de los accidentes
+ * 
+ * @author tofol
+ *
+ */
 @Path("/Accidente")
 public class RestAccidentes {
 
+	/***
+	 * Token de autenticación
+	 */
 	private static final String TOKEN = "patata23";
 
 	@EJB
@@ -55,6 +64,14 @@ public class RestAccidentes {
 	@Context
 	private HttpServletRequest request;
 
+	/***
+	 * Petición de tipo GET que obtiene un token y un accidente por su id y devuelve
+	 * su json
+	 * 
+	 * @param token Token identificador
+	 * @param id    Id del accidente
+	 * @return Json con los datos del accidente o null
+	 */
 	@GET
 	@Path("/getAccidente/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -71,23 +88,38 @@ public class RestAccidentes {
 		return null;
 	}
 
+	/***
+	 * Petición de tipo PUT que obtiene un token y un accidente en formato json y
+	 * sustituye los datos del accidente en BBDD con la misma id por los nuevos
+	 * datos obtenidos
+	 * 
+	 * @param token     Token identificador
+	 * @param accidente Accidente con los nuevos datos para actualizar
+	 */
 	@PUT
 	@Path("/updateAccidente/{token}")
-	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Accidente updateAccidente(@PathParam("token") String token, Accidente accidente) {
+	public void updateAccidente(@PathParam("token") String token, Accidente accidente) {
 		if (token.equals(TOKEN)) {
-			return accidentesEJB.updateAccidente(accidente);
-		} else {
-			return null;
+			accidentesEJB.updateAccidente(accidente);
 		}
 	}
 
+	/***
+	 * Petición de tipo DELETE que obtiene un token y la id de un accidente y borra
+	 * este accidente de la BBDD
+	 * 
+	 * @param token Token identificador
+	 * @param id    Id del accidente a borrar
+	 */
 	@DELETE
 	@Path("/borraAccidente/{token}/{id}")
 	public void borraAccidente(@PathParam("token") String token, @PathParam("id") String id) {
 		LogSingleton log = LogSingleton.getInstance();
 		try {
+			/***
+			 * Si consigue parsearlo a Integer lo borra, si no salta excepción
+			 */
 			Integer iden = Integer.valueOf(id);
 			if (token.equals(TOKEN)) {
 				accidentesEJB.borrarAccidente(iden.toString());
@@ -97,6 +129,13 @@ public class RestAccidentes {
 		}
 	}
 
+	/***
+	 * Petición de tipo PUT que obtiene un token y un accidente en formato json y lo
+	 * inserta en la BBDD
+	 * 
+	 * @param token     Token identificador
+	 * @param accidente Accidente a introducir en la BBDD
+	 */
 	@PUT
 	@Path("/insertAccidente/{token}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -106,6 +145,14 @@ public class RestAccidentes {
 		}
 	}
 
+	/***
+	 * Petición de tipo GET que obtiene un token y la id del distrito y devuelve los
+	 * datos de todos los accidentes de este distrito y el nombre del distrito
+	 * 
+	 * @param token      Token identificador
+	 * @param idDistrito Id del distrito del que obtener todos sus accidentes
+	 * @return Json del ArrayList con todos los accidentes de ese distrito o null
+	 */
 	@GET
 	@Path("/getAccidentesConDistritos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -118,6 +165,12 @@ public class RestAccidentes {
 		}
 	}
 
+	/***
+	 * Petición de tipo GET que obtiene un token y devuelve todos los distritos
+	 * 
+	 * @param token Token identificador
+	 * @return Json del ArrayList con todos los distritos o null
+	 */
 	@GET
 	@Path("/getDistritos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -129,6 +182,13 @@ public class RestAccidentes {
 		}
 	}
 
+	/***
+	 * Petición de tipo GET que obtiene un token y devuelve todos los tipos de
+	 * accidentes
+	 * 
+	 * @param token Token identificador
+	 * @return Json del ArrayList con todos los tipos de accidentes o null
+	 */
 	@GET
 	@Path("/getTiposAccidentes/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -140,6 +200,12 @@ public class RestAccidentes {
 		}
 	}
 
+	/***
+	 * Petición de tipo GET que obtiene un token y devuelve todos los tipos de sexos
+	 * 
+	 * @param token Token identificador
+	 * @return Json del ArrayList con todos los tipos de sexos o null
+	 */
 	@GET
 	@Path("/getTiposSexos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -151,6 +217,13 @@ public class RestAccidentes {
 		}
 	}
 
+	/***
+	 * Petición de tipo GET que obtiene un token y devuelve todos los tipos de
+	 * vehiculos
+	 * 
+	 * @param token Token identificador
+	 * @return Json del ArrayList con todos los tipos de vehiculos o null
+	 */
 	@GET
 	@Path("/getTiposVehiculos/{token}")
 	@Produces(MediaType.APPLICATION_JSON)

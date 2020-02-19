@@ -9,6 +9,12 @@ import aplicacion.controlador.Principal;
 import aplicacion.controlador.rest.RestAccidentes;
 import aplicacion.modelo.dao.MyBatisUtil;
 
+/***
+ * Pojo Singleton para loguear errores y otros mensajes
+ * 
+ * @author tofol
+ *
+ */
 public class LogSingleton {
 	private static final LogSingleton INSTANCE = new LogSingleton();
 	private Logger loggerMyBatisUtil = LoggerFactory.getLogger(MyBatisUtil.class);

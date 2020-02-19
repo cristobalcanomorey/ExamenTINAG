@@ -36,6 +36,7 @@
 		<p>Distrito:</p>
 		<select name="distrito">
 			<%
+			//Muestra las opciones de los distritos y el distrito seleccionado
 				for(String dis: distritos){
 					if(dis.equals(distrito)){
 						out.print("<option selected='selected'>");
@@ -54,6 +55,7 @@
 		<button type="submit">Buscar</button>
 	</form>
 	<%
+	//Crea la tabla con los datos obtenidos o muestra un mensaje de error
 		apsyveds = (ArrayList<AccidentesPorSexoYVehiculoEnDistrito>) request.getAttribute("APSYVEDS");
 		if(apsyveds != null){
 			if(!apsyveds.isEmpty()){

@@ -2,6 +2,13 @@ package aplicacion.modelo.pojo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Pojo con el nombre de distrito, el tipo de accidente y la cantidad de
+ * accidentes de ese tipo en el distrito
+ * 
+ * @author tofol
+ *
+ */
 @XmlRootElement
 public class AccidentesPorTipoEnDistrito {
 
